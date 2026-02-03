@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('patient_company', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->json('roles');
             $table->boolean('state')->default(true);
             $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });

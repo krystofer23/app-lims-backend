@@ -13,6 +13,7 @@ class PatientCompany extends Model
     protected $table = 'patient_company';
 
     protected $fillable = [
+        'user_id',
         'company_id',
         'email',
         'phone',
@@ -28,5 +29,10 @@ class PatientCompany extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
